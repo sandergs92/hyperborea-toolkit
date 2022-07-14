@@ -288,9 +288,12 @@ function getWindForce() {
     }
     return [windForce, mph, effects]
 }
-function getWindChill(temperature, windForce) {
-    console.log(typeof temperature)
-    return windChill[temperature][windForce]
+function getWindChill(baseTemp, temperature, windForce) {
+    if (baseTemp >= -75 && baseTemp <= 50) {
+        return windChill[baseTemp][windForce]
+    } else {
+        return temperature
+    }
 }
 // Input clicks handling
 // Click button Year
@@ -334,7 +337,7 @@ $(document).on("click", "#generateButton > button", function () {
         $("#windforce").text(windForce[0])
         $("#mph").text(windForce[1])
         $("#windforceEffects").text(windForce[2])
-        chill = getWindChill(temperature[0], windForce[0])
+        chill = getWindChill(temperature[0], temperature[1], windForce[0])
         $("#windchill").text(chill)
     }
 });
