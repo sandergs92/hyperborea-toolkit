@@ -310,8 +310,8 @@ function getWindChill(baseTemp, temperature, windForce) {
 // Input clicks handling
 // Click button Year
 $(document).on("click", "#dropdownMenuButtonYear > ul > li > a", function () {
-    year = parseInt($(this).text())
-    $("#dropdownMenuButtonYear > button").text(year);
+    year = parseInt($(this).data("custom-value"))
+    $("#dropdownMenuButtonYear > button").text($(this).text());
 });
 // Click button Latitude
 $(document).on("click", "#dropdownMenuButtonLatitude > ul > li > a", function () {
