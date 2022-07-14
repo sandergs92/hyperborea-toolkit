@@ -142,17 +142,17 @@ function getTemperature() {
         temperature = temperature + anomalousRegionalModifiers[anomalousRegion]["Temperature Modifier"]
     }
     // Temperature effects
-    if (temperature == 0) {
+    if (temperature <= 0 && temperature >= -19) {
         effects = "Exposed creatures must make once per hour tests of constitution. (d4 damage, or assign a damage number)"
-    } else if (temperature == -20) {
+    } else if (temperature <= -20 && temperature >= -39) {
         effects = "Exposed creatures must make once per half hour tests of constitution. (d4 damage, or assign a damage number)"
-    } else if (temperature == -40) {
+    } else if (temperature <= -40 && temperature >= -59) {
         effects = "Exposed creatures must make once per turn tests of constitution. (d4 damage, or assign a damage number)"
-    } else if (temperature == -60) {
+    } else if (temperature <= -60 && temperature >= -79) {
         effects = "Exposed creatures must make once per five minutes tests of constitution. (d4 damage, or assign a damage number)"
-    } else if (temperature == -80) {
+    } else if (temperature <= -80 && temperature >= -99) {
         effects = "Exposed creatures must make once per minute tests of constitution. (d4 damage, or assign a damage number)"
-    } else if (temperature == -100) {
+    } else if (temperature <= -100) {
         effects = "Exposed creatures must make once per round tests of constitution. (d4 damage, or assign a damage number)"
     } else if (temperature >= 100) {
         effects = "Active PCs must make once per hour tests of constitution. (Armored PC penalty chance-in-six=DR; Failure=stunned from heatstroke;  "
