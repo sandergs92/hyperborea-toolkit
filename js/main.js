@@ -22,6 +22,7 @@ function resetForm() {
     $("#dropdownMenuButtonLatitude > button").text("Latitudinal range");
     $("#dropdownMenuButtonTerrain > button").text("Terrain type");
     $("#dropdownMenuButtonAnomalous > button").text("Anomalous region");
+    $("#hideEffects").hide()
 }
 // Weather objects 
 var baseTemperature = {
