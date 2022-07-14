@@ -18,7 +18,7 @@ function resetForm() {
     terrainType = ""
     anomalousRegion = ""
 
-    $("#dropdownMenuButtonYear > button").text("Year");
+    $("#dropdownMenuButtonYear > button").text("Year / Common Denomination / Esoteric Denomination / Season");
     $("#dropdownMenuButtonLatitude > button").text("Latitudinal range");
     $("#dropdownMenuButtonTerrain > button").text("Terrain type");
     $("#dropdownMenuButtonAnomalous > button").text("Anomalous region");
