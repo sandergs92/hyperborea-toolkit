@@ -12,6 +12,17 @@ var year = 0
 var latitudinalRange = ""
 var terrainType = ""
 var anomalousRegion = ""
+function resetForm() {
+    year = 0
+    latitudinalRange = ""
+    terrainType = ""
+    anomalousRegion = ""
+
+    $("#dropdownMenuButtonYear > button").text("Year");
+    $("#dropdownMenuButtonLatitude > button").text("Latitudinal range");
+    $("#dropdownMenuButtonTerrain > button").text("Terrain type");
+    $("#dropdownMenuButtonAnomalous > button").text("Anomalous region");
+}
 // Weather objects 
 var baseTemperature = {
     1: { "Interior Mainland (~72°N)": -35, "Coastal Mainland (~54°N)": -10, "River Okeanos (~36°N)": 30, "Rim of the World (~18°N)": 60 },
@@ -197,7 +208,7 @@ function getConditions(baseTemp) {
 function getExtremeWeather() {
     let conditions = ""
     let effects = ""
-    d100Result = rollDice(1,100)
+    d100Result = rollDice(1, 100)
 
     if (d100Result >= 1 && d100Result <= 25) {
         conditions = "Extreme Weather: Hail"
@@ -317,7 +328,7 @@ $(document).on("click", "#dropdownMenuButtonAnomalous > ul > li > a", function (
     $("#dropdownMenuButtonAnomalous > button").text(anomalousRegion);
 });
 // Click button Generate
-$(document).on("click", "#generateButton > button", function () {
+$(document).on("click", "#generateButton", function () {
     // warning
     if (year == 0 || latitudinalRange == "") {
         $(".alert").show()
@@ -335,5 +346,10 @@ $(document).on("click", "#generateButton > button", function () {
         $("#windforceEffects").text(windForce[2])
         chill = getWindChill(temperature[0], temperature[1], windForce[0])
         $("#windchill").text(chill)
+        $("#hideEffects").show()
     }
+});
+// Click button Reset
+$(document).on("click", "#resetButton", function () {
+    resetForm()
 });

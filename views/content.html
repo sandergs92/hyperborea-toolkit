@@ -78,36 +78,46 @@
       <li><a class="dropdown-item" href="#">Valley of Mists</a></li>
     </ul>
   </div>
-  <div class="mt-4" id="generateButton">
-    <button type="button" class="btn btn-primary">GENERATE</button>
+  <div class="mt-4">
+    <button type="button" class="btn btn-success" id="generateButton">GENERATE</button>
+    <button type="button" class="btn btn-warning" id="resetButton">RESET</button>
   </div>
 </div>
 
-<hr class="col-3 col-md-2 mb-5">
+<div id="hideEffects" style="display: none;">
+  <hr class="col-3 col-md-2 mb-5">
 
-<div class="row g-5">
-  <div class="col-md-6">
-    <h2>Current weather:</h2>
-    <ul class="ps-0" id="weatherResults">
-      <li class="d-flex align-items-start mb-1"><i class="bi-thermometer" style="font-size: 2rem;"></i>&nbsp;
-        Temperature is&nbsp;<span id="temperature" style="font-weight:bold"></span>&#8457;</li>
-      <li class="d-flex align-items-start mb-1"><i class="bi-cloud-fill" style="font-size: 2rem;"></i>&nbsp; Conditions
-        are&nbsp;<span id="conditions" style="font-weight:bold"></span>&nbsp;</span></li>
-      <li class="d-flex align-items-start mb-1"><i class="bi-wind" style="font-size: 2rem;"></i>&nbsp; Wind Force is&nbsp;<span id="windforce" style="font-weight:bold"></span>,&nbsp;<span id="mph" style="font-weight:bold"></span>&nbsp;mph
-      </li>
-      <li class="d-flex align-items-start mb-1"><i class="bi-thermometer-snow" style="font-size: 2rem;"></i>&nbsp; Wind Chill is&nbsp;<span id="windchill" style="font-weight:bold"></span>&#8457;
-      </li>
-    </ul>
+  <div class="row g-5">
+    <div class="col-md-6">
+      <h2>Current weather:</h2>
+      <ul class="ps-0" id="weatherResults">
+        <li class="d-flex align-items-start mb-1"><i class="bi-thermometer" style="font-size: 2rem;"></i>&nbsp;
+          Temperature is&nbsp;<span id="temperature" style="font-weight:bold"></span>&#8457;</li>
+        <li class="d-flex align-items-start mb-1"><i class="bi-cloud-fill" style="font-size: 2rem;"></i>&nbsp;
+          Conditions
+          are&nbsp;<span id="conditions" style="font-weight:bold"></span>&nbsp;</span></li>
+        <li class="d-flex align-items-start mb-1"><i class="bi-wind" style="font-size: 2rem;"></i>&nbsp; Wind Force
+          is&nbsp;<span id="windforce" style="font-weight:bold"></span>,&nbsp;<span id="mph"
+            style="font-weight:bold"></span>&nbsp;mph
+        </li>
+        <li class="d-flex align-items-start mb-1"><i class="bi-thermometer-snow" style="font-size: 2rem;"></i>&nbsp;
+          Wind Chill is&nbsp;<span id="windchill" style="font-weight:bold"></span>&#8457;
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-6">
+      <h2>Effects on party:</h2>
+      <ul class="ps-0" id="effectResults">
+        <li class="d-flex align-items-start mb-1"><i class="bi-thermometer" style="font-size: 2rem;"></i>&nbsp;<span
+            id="temperatureEffects" style="font-weight:bold"></span></li>
+        <li class="d-flex align-items-start mb-1"><i class="bi-cloud-fill" style="font-size: 2rem;"></i>&nbsp;<span
+            id="conditionsEffects" style="font-weight:bold"></span>&nbsp;</span></li>
+        <li class="d-flex align-items-start mb-1"><i class="bi-wind" style="font-size: 2rem;"></i>&nbsp;<span
+            id="windforceEffects" style="font-weight:bold"></span></li>
+        </li>
+      </ul>
+    </div>
+
   </div>
-
-  <div class="col-md-6">
-    <h2>Effects on party:</h2>
-    <ul class="ps-0" id="effectResults">
-      <li class="d-flex align-items-start mb-1"><i class="bi-thermometer" style="font-size: 2rem;"></i>&nbsp;<span id="temperatureEffects" style="font-weight:bold"></span></li>
-      <li class="d-flex align-items-start mb-1"><i class="bi-cloud-fill" style="font-size: 2rem;"></i>&nbsp;<span id="conditionsEffects" style="font-weight:bold"></span>&nbsp;</span></li>
-      <li class="d-flex align-items-start mb-1"><i class="bi-wind" style="font-size: 2rem;"></i>&nbsp;<span id="windforceEffects" style="font-weight:bold"></span></li>
-      </li>
-    </ul>
-  </div>
-
 </div>
