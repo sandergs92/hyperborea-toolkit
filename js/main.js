@@ -149,7 +149,7 @@ function getTemperature() {
     }
     return [baseTemp, temperature, effects]
 }
-function getConditions() {
+function getConditions(baseTemp) {
     let conditions = ""
     let effects = ""
     let d100Result = rollDice(1, 100)
@@ -178,8 +178,9 @@ function getConditions() {
         conditions = "Severe heat"
         effects = "Add 20°F and reroll."
     } else if (d100Result == 50) {
-        conditions = "Extreme weather"
-        effects = "See table B-9"
+        extremeWeather = getExtremeWeather()
+        conditions = extremeWeather[0]
+        effects = extremeWeather[1]
     } else if (d100Result >= 51 && d100Result <= 52) {
         conditions = "Severe cold"
         effects = "Subtract 20°F and reroll."
@@ -187,8 +188,51 @@ function getConditions() {
         conditions = "Fog"
         effects = "Visibility reduced to 20 feet."
     } else if (d100Result >= 71) {
-        conditions = "Precipitation"
-        effects = "Visibility reduced to 20 feet."
+        precipitation = getPrecipitation(baseTemp)
+        conditions = precipitation[0]
+        effects = precipitation[1]
+    }
+    return [conditions, effects]
+}
+function getExtremeWeather() {
+    let conditions = ""
+    let effects = ""
+    d100Result = rollDice(1,100)
+
+    if (d100Result >= 1 && d100Result <= 25) {
+        conditions = "Extreme Weather: Hail"
+        effects = "Reroll on Table B-2 at +20 (page 568). Hail falls at random time of day for 1d10 turns. Exposed creatures sustain 1d3−1 hp damage per turn; DR from armour applies."
+    } else if (d100Result >= 26 && d100Result <= 35) {
+        conditions = "Extreme Weather: Hurricane"
+        effects = "20% chance per turn of 3d4 hp damage (avoidance save negates); 45% chance of damage to structures."
+    } else if (d100Result >= 36 && d100Result <= 80) {
+        conditions = "Extreme Weather: Thunderstorm"
+        effects = "Reroll on Table B-2 at +20. Thunder and lightning occur for 1d4 hours. On a 1% chance per turn, lightning strikes nearby. If so, chance to be struck is 10% minus base AC (e.g., 1% if unarmoured, 7% in plate mail). Bolt causes 6d8 hp damage (avoidance save for ½)."
+    } else if (d100Result >= 81 && d100Result <= 90) {
+        conditions = "Extreme Weather: Tornado"
+        effects = "Reroll on Table B-2 at +30. Tornado manifests at random time of day for 1d12 minutes. See control weather for effects."
+    } else if (d100Result >= 91 && d100Result <= 98) {
+        conditions = "Extreme Weather: Volcano"
+        effects = "Nearest volcano erupts at random time of day, preceded by 1d3 tremors at 1d10-minute intervals. Make death save or fall prone. Eruption blankets all in thick ash."
+    } else if (d100Result >= 99 && d100Result <= 100) {
+        conditions = "Extreme Weather: Fortean event"
+        effects = "Examples include rain of acid, blood, or frogs; unnaturally coloured snow; eerie lights; ball lightning; falling meteors or spacecraft; or “frozen air” that causes asphyxia when inhaled. Referee creativity and deviousness are encouraged."
+    }
+
+    return [conditions, effects]
+}
+function getPrecipitation(baseTemp) {
+    let conditions = ""
+    let effects = ""
+    if (baseTemp < 30) {
+        conditions = "Precipitation: Snow"
+        effects = "Visibility reduced to 20 feet. Snow collects at 1d4÷2 inches per hour for 1d12 hours. −10 MV at 4 inches; −20 MV at 12 inches."
+    } else if (baseTemp >= 30 && baseTemp <= 35) {
+        conditions = "Precipitation: Sleet"
+        effects = "Visibility reduced to 20 feet; −10 MV."
+    } else if (baseTemp > 35) {
+        conditions = "Rain"
+        effects = "Missile fire at −2; −10 MV."
     }
     return [conditions, effects]
 }
@@ -283,7 +327,7 @@ $(document).on("click", "#generateButton > button", function () {
         temperature = getTemperature()
         $("#temperature").text(temperature[1])
         $("#temperatureEffects").text(temperature[2])
-        conditions = getConditions()
+        conditions = getConditions(temperature[0])
         $("#conditions").text(conditions[0])
         $("#conditionsEffects").text(conditions[1])
         windForce = getWindForce()
