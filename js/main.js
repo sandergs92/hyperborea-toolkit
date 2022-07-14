@@ -243,7 +243,7 @@ function getPrecipitation(baseTemp) {
         conditions = "Precipitation: Sleet"
         effects = "Visibility reduced to 20 feet; −10 MV."
     } else if (baseTemp > 35) {
-        conditions = "Rain"
+        conditions = "Precipitation: Rain"
         effects = "Missile fire at −2; −10 MV."
     }
     return [conditions, effects]
