@@ -300,25 +300,21 @@ function getWindChill(baseTemp, temperature, windForce) {
 $(document).on("click", "#dropdownMenuButtonYear > ul > li > a", function () {
     year = parseInt($(this).text())
     $("#dropdownMenuButtonYear > button").text(year);
-    console.log(year)
 });
 // Click button Latitude
 $(document).on("click", "#dropdownMenuButtonLatitude > ul > li > a", function () {
     latitudinalRange = $(this).text()
     $("#dropdownMenuButtonLatitude > button").text(latitudinalRange);
-    console.log(latitudinalRange)
 });
 // Click button Terrain type
 $(document).on("click", "#dropdownMenuButtonTerrain > ul > li > a", function () {
     terrainType = $(this).text()
     $("#dropdownMenuButtonTerrain > button").text(terrainType);
-    console.log(terrainType)
 });
 // Click button Terrain type
 $(document).on("click", "#dropdownMenuButtonAnomalous > ul > li > a", function () {
     anomalousRegion = $(this).text()
     $("#dropdownMenuButtonAnomalous > button").text(anomalousRegion);
-    console.log(anomalousRegion)
 });
 // Click button Generate
 $(document).on("click", "#generateButton > button", function () {
