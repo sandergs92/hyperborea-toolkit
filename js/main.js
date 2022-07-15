@@ -3,11 +3,8 @@ $(document).ready(function () {
     loadContent("weather")
 });
 function loadContent(view) {
-    var includes = $('[data-include]')
-    $.each(includes, function () {
-        var file = 'views/' + view + '.html'
-        $(this).load(file)
-    })
+    var file = 'views/' + view + '.html'
+    $("#content").load(file)
 }
 // DICE 
 function rollDice(n, sides) {
