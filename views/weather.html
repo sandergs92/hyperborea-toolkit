@@ -1,0 +1,124 @@
+<script src="./js/weather.js" async defer></script>
+<h1>Weather generator</h1>
+<p class="fs-5 col-md-8">Determine daily temperature, conditions, wind force, and wind chill at a certain location in
+  Hyperborea.</p>
+
+<div class="mb-5">
+  <h3>Year*:</h3>
+  <div class="dropdown" id="dropdownMenuButtonYear">
+    <div class="alert alert-danger" role="alert" style="display: none;">
+      This field is compulsory!
+    </div>
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Yr. / Common Denom. / Esoteric Denom. / Seas.
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="#" data-custom-value="1">Year 1: Bear / Genesis / Winter</a></li>
+      <li><a class="dropdown-item" href="#" data-custom-value="2">Year 2: Fish / Renaissance / Winter-Spring</a></li>
+      <li><a class="dropdown-item" href="#" data-custom-value="3">Year 3: Wolf / Vernal Equinox / Spring</a></li>
+      <li><a class="dropdown-item" href="#" data-custom-value="4">Year 4: Hare / Tempest / Spring</a></li>
+      <li><a class="dropdown-item" href="#" data-custom-value="5">Year 5: Elk / Deluge / Summer</a></li>
+      <li><a class="dropdown-item" href="#" data-custom-value="6">Year 6: Tiger / High Summer Waxing / Summer</a></li>
+      <li><a class="dropdown-item" href="#" data-custom-value="7">Year 7: Crab / High Summer Waning / Summer</a></li>
+      <li><a class="dropdown-item" href="#" data-custom-value="8">Year 8: Eagle / Drought / Summer</a></li>
+      <li><a class="dropdown-item" href="#" data-custom-value="9">Year 9: Whale / Tranquillity / Fall</a></li>
+      <li><a class="dropdown-item" href="#" data-custom-value="10">Year 10: Aurochs / Autumnal Equinox / Fall</a></li>
+      <li><a class="dropdown-item" href="#" data-custom-value="11">Year 11: Mammoth / Twilight / Fall-Winter</a></li>
+      <li><a class="dropdown-item" href="#" data-custom-value="12">Year 12: Fox / Coda / Winter</a></li>
+      <li><a class="dropdown-item" href="#" data-custom-value="13">Year 13: Bat / Nightfall / Winter</a></li>
+    </ul>
+  </div>
+  <h3>Latitudinal range*:</h3>
+  <div class="dropdown" id="dropdownMenuButtonLatitude">
+    <div class="alert alert-danger" role="alert" style="display: none;">
+      This field is compulsory!
+    </div>
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Latitudinal range
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+      <li><a class="dropdown-item" href="#">Interior Mainland (~72°N)</a></li>
+      <li><a class="dropdown-item" href="#">Coastal Mainland (~54°N)</a></li>
+      <li><a class="dropdown-item" href="#">River Okeanos (~36°N)</a></li>
+      <li><a class="dropdown-item" href="#">Rim of the World (~18°N)</a></li>
+    </ul>
+  </div>
+  <h3>Terrain type:</h3>
+  <div class="dropdown" id="dropdownMenuButtonTerrain">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Terrain type
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+      <li><a class="dropdown-item" href="#">Desert (Sandy)</a></li>
+      <li><a class="dropdown-item" href="#">Desert (Steppe)</a></li>
+      <li><a class="dropdown-item" href="#">Forest</a></li>
+      <li><a class="dropdown-item" href="#">Hills</a></li>
+      <li><a class="dropdown-item" href="#">Hills, Glaciated</a></li>
+      <li><a class="dropdown-item" href="#">Mountains</a></li>
+      <li><a class="dropdown-item" href="#">Mountains, Glaciated</a></li>
+      <li><a class="dropdown-item" href="#">Plains</a></li>
+      <li><a class="dropdown-item" href="#">Plains, Coastal</a></li>
+      <li><a class="dropdown-item" href="#">Plateau / Ridge</a></li>
+      <li><a class="dropdown-item" href="#">Rainforest</a></li>
+      <li><a class="dropdown-item" href="#">Tar Pits / Wetlands</a></li>
+      <li><a class="dropdown-item" href="#">Tundra</a></li>
+      <li><a class="dropdown-item" href="#">Volcanic</a></li>
+      <li><a class="dropdown-item" href="#">Volcanic, Glaciated</a></li>
+      <li><a class="dropdown-item" href="#">Water</a></li>
+    </ul>
+  </div>
+  <h3>Anomalous region:</h3>
+  <div class="dropdown" id="dropdownMenuButtonAnomalous">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Anomalous region
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton4">
+      <li><a class="dropdown-item" href="#">Abbicca's Mere</a></li>
+      <li><a class="dropdown-item" href="#">IX</a></li>
+      <li><a class="dropdown-item" href="#">Sharath</a></li>
+      <li><a class="dropdown-item" href="#">Valley of Mists</a></li>
+    </ul>
+  </div>
+  <div class="mt-4">
+    <button type="button" class="btn btn-success" id="generateButton">GENERATE</button>
+    <button type="button" class="btn btn-warning" id="resetButton">RESET</button>
+  </div>
+</div>
+
+<div id="hideEffects" style="display: none;">
+  <hr class="col-3 col-md-2 mb-5">
+
+  <div class="row g-5">
+    <div class="col-md-6">
+      <h2>Current weather:</h2>
+      <ul class="ps-0" id="weatherResults">
+        <li class="d-flex align-items-start mb-1"><i class="bi-thermometer" style="font-size: 2rem;"></i>&nbsp;
+          Temperature is&nbsp;<span id="temperature" style="font-weight:bold"></span>&#8457;</li>
+        <li class="d-flex align-items-start mb-1"><i class="bi-cloud-fill" style="font-size: 2rem;"></i>&nbsp;
+          Conditions
+          are&nbsp;<span id="conditions" style="font-weight:bold"></span>&nbsp;</span></li>
+        <li class="d-flex align-items-start mb-1"><i class="bi-wind" style="font-size: 2rem;"></i>&nbsp; Wind Force
+          is&nbsp;<span id="windforce" style="font-weight:bold"></span>,&nbsp;<span id="mph"
+            style="font-weight:bold"></span>&nbsp;mph
+        </li>
+        <li class="d-flex align-items-start mb-1"><i class="bi-thermometer-snow" style="font-size: 2rem;"></i>&nbsp;
+          Wind Chill is&nbsp;<span id="windchill" style="font-weight:bold"></span>&#8457;
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-6">
+      <h2>Effects on party:</h2>
+      <ul class="ps-0" id="effectResults">
+        <li class="d-flex align-items-start mb-1"><i class="bi-thermometer" style="font-size: 2rem;"></i>&nbsp;<span
+            id="temperatureEffects" style="font-weight:bold"></span></li>
+        <li class="d-flex align-items-start mb-1"><i class="bi-cloud-fill" style="font-size: 2rem;"></i>&nbsp;<span
+            id="conditionsEffects" style="font-weight:bold"></span>&nbsp;</span></li>
+        <li class="d-flex align-items-start mb-1"><i class="bi-wind" style="font-size: 2rem;"></i>&nbsp;<span
+            id="windforceEffects" style="font-weight:bold"></span></li>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>

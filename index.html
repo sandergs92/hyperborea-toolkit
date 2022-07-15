@@ -9,8 +9,7 @@
   <meta name="generator" content="Hugo 0.98.0">
   <title>Hyperborea Referee Toolkit</title>
 
-  <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/starter-template/">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="css/lib/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.0/font/bootstrap-icons.css">
   <style>
     .bd-placeholder-img {
@@ -67,41 +66,46 @@
 
 
   <!-- Custom styles for this template -->
-  <link href="starter-template.css" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script>
-    // https://stackoverflow.com/a/31837264
-    $(function () {
-      var includes = $('[data-include]')
-      $.each(includes, function () {
-        var file = 'views/' + $(this).data('include') + '.html'
-        $(this).load(file)
-      })
-    })
-  </script>
-  <script src="js/main.js"></script>
+  <link href="css/starter-template.css" rel="stylesheet">
+  <script src="js/lib/jquery-3.6.0.min.js"></script>
+  <script src="js/main.js" async defer></script>
 </head>
 
 <body>
 
-  <div class="col-lg-8 mx-auto p-3 py-md-5">
-    <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
-      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-        <img class="img-fluid" src="img/logomasthead2021-ragged_orig.png" alt="Hyperborea logo" width="200">
-        <span class="fs-4">&nbsp; unofficial toolkit</span>
+  <nav class="navbar navbar-expand-lg navbar-nav navbar-light" style="background-color: #FF9435;border-top: 2px solid black; border-bottom: 2px solid black;">
+    <div class="container">
+      <a class="navbar-brand" href="javascript:window.location.origin.reload(true)" style="color: #2CCBF2">
+        <!-- <img class="img-fluid" src="img/logomasthead2021-ragged_orig.png" alt="Hyperborea logo" width="200"> -->
+        HYPERBOREA unofficial toolkit
       </a>
-    </header>
-
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="javascript:window.location.origin.reload(true)">Home</a>
+          <a class="nav-link" href="javascript:loadContent('weather')">Weather</a>
+          <!-- <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="col-lg-8 mx-auto p-3 py-md-5">
     <main>
-      <div data-include="content"></div>
+      <div id="content" data-include="weather"></div>
     </main>
-    <footer class="pt-5 my-5 text-muted border-top">
-      The unofficial Hyperborea Referee toolkit is created by Sander Goetzee &middot; &copy; 2022. “HYPERBOREA” is a registered trademark of North Wind Adventures, LLC. “Astonishing Swordsmen & Sorcerers of Hyperborea,” “AS&SH,” and all other North Wind Adventures product names and their respective logos are trademarks of North Wind Adventures, LLC in the USA and other countries. ©2022 North Wind Adventures, LLC. ALL RIGHTS RESERVED.
+    <footer class="pt-5 my-5 text-muted border-top border-secondary">
+      The unofficial Hyperborea Referee toolkit is created by Sander Goetzee &middot; &copy; 2022. <br /><br />“HYPERBOREA” is
+      a registered trademark of North Wind Adventures, LLC. “Astonishing Swordsmen & Sorcerers of Hyperborea,” “AS&SH,”
+      and all other North Wind Adventures product names and their respective logos are trademarks of North Wind
+      Adventures, LLC in the USA and other countries. ©2022 North Wind Adventures, LLC. ALL RIGHTS RESERVED.
     </footer>
   </div>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="js/lib/bootstrap.bundle.min.js"></script>
 
 
 </body>

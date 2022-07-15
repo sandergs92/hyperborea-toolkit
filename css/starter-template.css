@@ -1,3 +1,8 @@
+body {
+  background-color: #E2E4E6;
+  color: #000000;
+}
+
 .icon-list li::before {
   display: block;
   flex-shrink: 0;
