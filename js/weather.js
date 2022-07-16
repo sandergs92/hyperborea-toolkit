@@ -340,6 +340,7 @@ $(document).on("click", "#generateButton", function () {
         chill = getWindChill(temperature[0], temperature[1], windForce[0])
         $("#windchill").text(chill)
         $("#hideEffects").show()
+        scrollTo("#hideEffects")
     }
 });
 // Click button Reset
