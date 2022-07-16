@@ -4,6 +4,7 @@ var year = 0
 var latitudinalRange = ""
 var terrainType = ""
 var anomalousRegion = ""
+// Reset form
 function resetForm() {
     year = 0
     latitudinalRange = ""
@@ -104,35 +105,35 @@ function getTemperature() {
     let baseTemp = 0
     let temperature = 0
     let effects = ""
+    let result = ""
     // Determine base temperature
-    if (latitudinalRange == "Interior Mainland (~72°N)") {
+    if (latitudinalRange == "Interior Mainland (~72°N)" || latitudinalRange == "Coastal Mainland (~54°N)") {
         diceResult = rollDice(2, 4) * 5
-        baseTemp = diceResult + baseTemperature[year][latitudinalRange]
-    } else if (latitudinalRange == "Coastal Mainland (~54°N)") {
-        diceResult = rollDice(2, 4) * 5
-        baseTemp = diceResult + baseTemperature[year][latitudinalRange]
-    } else if (latitudinalRange == "River Okeanos (~36°N)") {
+    } else if (latitudinalRange == "River Okeanos (~36°N)" || latitudinalRange == "Rim of the World (~18°N)") {
         diceResult = rollDice(1, 4) * 5
-        baseTemp = diceResult + baseTemperature[year][latitudinalRange]
-    } else if (latitudinalRange == "Rim of the World (~18°N)") {
-        diceResult = rollDice(1, 4) * 5
-        baseTemp = diceResult + baseTemperature[year][latitudinalRange]
     }
+    result = diceResult.toString() + " + " + baseTemperature[year][latitudinalRange]
+    baseTemp = diceResult + baseTemperature[year][latitudinalRange]
     temperature = baseTemp
     // Terrain modifier
     if (terrainType != '') {
         if (terrainType == "Water" && baseTemp <= 40) {
+            result = result + " + " + terrainModifiers["Water"]["Temperature Modifier"].toString() + " + 10"
             temperature = temperature + terrainModifiers["Water"]["Temperature Modifier"] + 10
         } else if (terrainType == "Water" && baseTemp >= 60) {
+            result = result + " + " + terrainModifiers["Water"]["Temperature Modifier"].toString() + " - 10"
             temperature = temperature + terrainModifiers["Water"]["Temperature Modifier"] - 10
         } else {
+            result = result + " + " + terrainModifiers[terrainType]["Temperature Modifier"].toString()
             temperature = temperature + terrainModifiers[terrainType]["Temperature Modifier"]
         }
     }
     // Anomalous regions modifier
     if (anomalousRegion != '') {
+        result = result + " + " + anomalousRegionalModifiers[anomalousRegion]["Temperature Modifier"].toString()
         temperature = temperature + anomalousRegionalModifiers[anomalousRegion]["Temperature Modifier"]
     }
+    result = result + " = " + temperature
     // Temperature effects
     if (temperature <= 0 && temperature >= -19) {
         effects = "Exposed creatures must make once per hour tests of constitution. (d4 damage, or assign a damage number)"
@@ -151,24 +152,28 @@ function getTemperature() {
     } else {
         effects = "-"
     }
-    return [baseTemp, temperature, effects]
+    return [baseTemp, temperature, effects, result]
 }
 function getConditions(baseTemp) {
     let conditions = ""
     let effects = ""
     let d100Result = rollDice(1, 100)
+    let result = ""
 
     // Seasonal modifier
+    result = d100Result.toString() + " + " + seasonalModifier[year]["Conditions Modifier"].toString()
     d100Result = d100Result + seasonalModifier[year]["Conditions Modifier"]
     // Terrain type modifier
     if (terrainType != '') {
+        result = result + " + " + terrainModifiers[terrainType]["Conditions Modifier"].toString()
         d100Result = d100Result + terrainModifiers[terrainType]["Conditions Modifier"]
     }
     // Anomalous regions modifier
     if (anomalousRegion != '') {
+        result = result + " + " + anomalousRegionalModifiers[anomalousRegion]["Conditions Modifier"].toString()
         d100Result = d100Result + anomalousRegionalModifiers[anomalousRegion]["Conditions Modifier"]
     }
-
+    result = result + " = " + d100Result
     if (d100Result <= 15) {
         conditions = "Clear"
         effects = "-"
@@ -196,12 +201,12 @@ function getConditions(baseTemp) {
         conditions = precipitation[0]
         effects = precipitation[1]
     }
-    return [conditions, effects]
+    return [conditions, effects, result]
 }
 function getExtremeWeather() {
     let conditions = ""
     let effects = ""
-    d100Result = rollDice(1, 100)
+    let d100Result = rollDice(1, 100)
 
     if (d100Result >= 1 && d100Result <= 25) {
         conditions = "Extreme Weather: Hail"
@@ -245,17 +250,22 @@ function getWindForce() {
     let mph = ""
     let effects = ""
     let d12Result = rollDice(1, 12)
+    let result = ""
 
     // Seasonal modifier
+    result = d12Result.toString() + " + " + seasonalModifier[year]["Wind Force Modifier"].toString()
     d12Result = d12Result + seasonalModifier[year]["Wind Force Modifier"]
     // Terrain type modifier
     if (terrainType != '') {
+        result = result + " + " + terrainModifiers[terrainType]["Wind Force Modifier"].toString()
         d12Result = d12Result + terrainModifiers[terrainType]["Wind Force Modifier"]
     }
     // Anomalous regions modifier
     if (anomalousRegion != '') {
+        result = result + " + " + anomalousRegionalModifiers[anomalousRegion]["Wind Force Modifier"].toString()
         d12Result = d12Result + anomalousRegionalModifiers[anomalousRegion]["Wind Force Modifier"]
     }
+    result = result + " = " + d12Result
 
     if (d12Result >= 1 && d12Result <= 3) {
         windForce = "Becalmed"
@@ -290,7 +300,7 @@ function getWindForce() {
         mph = "74–136"
         effects = "20% chance per turn of 3d4 hp damage (avoidance save negates); 45% chance of damage to structures."
     }
-    return [windForce, mph, effects]
+    return [windForce, mph, effects, result]
 }
 function getWindChill(baseTemp, temperature, windForce) {
     if (baseTemp >= -75 && baseTemp <= 50) {
@@ -330,13 +340,16 @@ $(document).on("click", "#generateButton", function () {
         temperature = getTemperature()
         $("#temperature").text(temperature[1])
         $("#temperatureEffects").text(temperature[2])
+        $("#weatherResults > li:nth-child(1)").tooltip('dispose').tooltip({title: "Dice+Mods: " + temperature[3]})
         conditions = getConditions(temperature[0])
         $("#conditions").text(conditions[0])
         $("#conditionsEffects").text(conditions[1])
+        $("#weatherResults > li:nth-child(2)").tooltip('dispose').tooltip({title: "Dice+Mods: " + conditions[2]})
         windForce = getWindForce()
         $("#windforce").text(windForce[0])
         $("#mph").text(windForce[1])
         $("#windforceEffects").text(windForce[2])
+        $("#weatherResults > li:nth-child(3)").tooltip('dispose').tooltip({title: "Dice+Mods: " + windForce[3]})
         chill = getWindChill(temperature[0], temperature[1], windForce[0])
         $("#windchill").text(chill)
         $("#hideEffects").show()
