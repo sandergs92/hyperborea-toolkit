@@ -11,7 +11,7 @@ function resetForm() {
     terrainType = ""
     anomalousRegion = ""
 
-    $("#dropdownMenuButtonYear > button").text("Yr. / Common Denom. / Esoteric Denom. / Season");
+    $("#dropdownMenuButtonYear > button").text("Year / Denominations / Season");
     $("#dropdownMenuButtonLatitude > button").text("Latitudinal range");
     $("#dropdownMenuButtonTerrain > button").text("Terrain type");
     $("#dropdownMenuButtonAnomalous > button").text("Anomalous region");
@@ -210,7 +210,7 @@ function getExtremeWeather() {
 
     if (d100Result >= 1 && d100Result <= 25) {
         conditions = "Extreme Weather: Hail"
-        effects = "Reroll on Table B-2 at +20 (page 568). Hail falls at random time of day for 1d10 turns. Exposed creatures sustain 1d3−1 hp damage per turn; DR from armour applies."
+        effects = "Reroll on Table B-2 at +20. Hail falls at random time of day for 1d10 turns. Exposed creatures sustain 1d3−1 hp damage per turn; DR from armour applies."
     } else if (d100Result >= 26 && d100Result <= 35) {
         conditions = "Extreme Weather: Hurricane"
         effects = "20% chance per turn of 3d4 hp damage (avoidance save negates); 45% chance of damage to structures."
