@@ -101,7 +101,7 @@ var seasonalModifier = {
     13: { "Conditions Modifier": 0, "Wind Force Modifier": 2 },
 }
 // Weather functions
-function getTemperature() {
+function getTemperature(tempMod = 0) {
     let baseTemp = 0
     let temperature = 0
     let effects = ""
@@ -112,8 +112,8 @@ function getTemperature() {
     } else if (latitudinalRange == "River Okeanos (~36°N)" || latitudinalRange == "Rim of the World (~18°N)") {
         diceResult = rollDice(1, 4) * 5
     }
-    result = diceResult.toString() + " + " + baseTemperature[year][latitudinalRange]
-    baseTemp = diceResult + baseTemperature[year][latitudinalRange]
+    result = diceResult.toString() + " + " + baseTemperature[year][latitudinalRange] + " + " + tempMod
+    baseTemp = diceResult + baseTemperature[year][latitudinalRange] + parseInt(tempMod)
     temperature = baseTemp
     // Terrain modifier
     if (terrainType != '') {
@@ -210,16 +210,16 @@ function getExtremeWeather() {
 
     if (d100Result >= 1 && d100Result <= 25) {
         conditions = "Extreme Weather: Hail"
-        effects = "Reroll on Table B-2 at +20. Hail falls at random time of day for 1d10 turns. Exposed creatures sustain 1d3−1 hp damage per turn; DR from armour applies."
+        effects = "Reroll on Table B-2 at +20 (pg. 565). Hail falls at random time of day for 1d10 turns. Exposed creatures sustain 1d3−1 hp damage per turn; DR from armour applies."
     } else if (d100Result >= 26 && d100Result <= 35) {
         conditions = "Extreme Weather: Hurricane"
         effects = "20% chance per turn of 3d4 hp damage (avoidance save negates); 45% chance of damage to structures."
     } else if (d100Result >= 36 && d100Result <= 80) {
         conditions = "Extreme Weather: Thunderstorm"
-        effects = "Reroll on Table B-2 at +20. Thunder and lightning occur for 1d4 hours. On a 1% chance per turn, lightning strikes nearby. If so, chance to be struck is 10% minus base AC (e.g., 1% if unarmoured, 7% in plate mail). Bolt causes 6d8 hp damage (avoidance save for ½)."
+        effects = "Reroll on Table B-2 at +20 (pg. 565). Thunder and lightning occur for 1d4 hours. On a 1% chance per turn, lightning strikes nearby. If so, chance to be struck is 10% minus base AC (e.g., 1% if unarmoured, 7% in plate mail). Bolt causes 6d8 hp damage (avoidance save for ½)."
     } else if (d100Result >= 81 && d100Result <= 90) {
         conditions = "Extreme Weather: Tornado"
-        effects = "Reroll on Table B-2 at +30. Tornado manifests at random time of day for 1d12 minutes. See control weather for effects."
+        effects = "Reroll on Table B-2 at +30 (pg. 565). Tornado manifests at random time of day for 1d12 minutes. See control weather for effects."
     } else if (d100Result >= 91 && d100Result <= 98) {
         conditions = "Extreme Weather: Volcano"
         effects = "Nearest volcano erupts at random time of day, preceded by 1d3 tremors at 1d10-minute intervals. Make death save or fall prone. Eruption blankets all in thick ash."
@@ -337,7 +337,11 @@ $(document).on("click", "#generateButton", function () {
         $(".alert").show()
     } else {
         $(".alert").hide()
-        temperature = getTemperature()
+        if ($("#tempMod").val()) {
+            temperature = getTemperature($("#tempMod").val())
+        } else {
+            temperature = getTemperature()
+        }
         $("#temperature").text(temperature[1])
         $("#temperatureEffects").text(temperature[2])
         $("#weatherResults > li:nth-child(1)").tooltip('dispose').tooltip({title: "Dice+Mods: " + temperature[3]})
