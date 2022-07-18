@@ -1,0 +1,60 @@
+<script src="./js/name.js" async defer></script>
+<h1>Name generator</h1>
+<p class="fs-5 col-md-8">Players (or referees) of an Astonishing Swordsmen & Sorcerers of Hyperborea™ campaign who wish to furnish their characters
+    with authentic sounding names need look no further than this fine generator created by Colin Chapman</p>
+
+<div class="mb-5">
+  <h3>Gender*:</h3>
+  <div class="dropdown" id="dropdownMenuButtonGender">
+    <div class="alert alert-danger" role="alert" style="display: none;">
+      This field is compulsory!
+    </div>
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Gender
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="#" data-custom-value="1">Male</a></li>
+      <li><a class="dropdown-item" href="#" data-custom-value="2">Female</a></li>
+    </ul>
+  </div>
+  <h3>Race*:</h3>
+  <div class="dropdown" id="dropdownMenuButtonRace">
+    <div class="alert alert-danger" role="alert" style="display: none;">
+      This field is compulsory!
+    </div>
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Race
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+      <li><a class="dropdown-item" href="#">Amazonian</a></li>
+      <li><a class="dropdown-item" href="#">Atlantean</a></li>
+      <li><a class="dropdown-item" href="#">Common</a></li>
+      <li><a class="dropdown-item" href="#">Esquimaux</a></li>
+      <li><a class="dropdown-item" href="#">Hyperborean</a></li>
+      <li><a class="dropdown-item" href="#">Ixian</a></li>
+      <li><a class="dropdown-item" href="#">Kelt</a></li>
+      <li><a class="dropdown-item" href="#">Kimmerian</a></li>
+      <li><a class="dropdown-item" href="#">Kimmerian (Kimmeri-Kelt)</a></li>
+      <li><a class="dropdown-item" href="#">Kimmerian (Krimmean)</a></li>
+      <li><a class="dropdown-item" href="#">Pictish</a></li>
+      <li><a class="dropdown-item" href="#">Pictish (Half-Blood)</a></li>
+      <li><a class="dropdown-item" href="#">Viking</a></li>
+    </ul>
+  </div>
+  <div class="mt-4">
+    <button type="button" class="btn btn-success" id="generateNameButton">GENERATE</button>
+    <button type="button" class="btn btn-warning" id="resetNameButton">RESET</button>
+  </div>
+</div>
+
+<div id="hideNameResult" style="display: none;">
+  <hr class="col-3 col-md-2 mb-5">
+
+  <div class="row g-5">
+    <div class="col-md-6">
+      <h2 id="nameResult">NAME</h2>
+      <i><p id="nameContext">Context: </p></i>
+    </div>
+
+  </div>
+</div>
