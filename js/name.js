@@ -274,6 +274,138 @@ var commonNameElements = {
     99: "Zonn",
     100: "Zull",
 }
+var esquimauxNames = expand({
+    "1, 2": "Aguta",
+    "3, 4": "Akiak",
+    "5, 6": "Arjalinerk",
+    "7, 8": "Arrluk",
+    "9, 10": "Assiminik",
+    "11, 12": "Aukaneck",
+    "13, 14": "Chulyin",
+    "15, 16": "Cikuq",
+    "17, 18": "Iluq",
+    "19, 20": "Issumatar",
+    "21, 22": "Kakortok",
+    "23, 24": "Karpok",
+    "25, 26": "Kesuk",
+    "27, 28": "Kinaktok",
+    "29, 30": "Kinapak",
+    "31, 32": "Krernertok",
+    "33, 34": "Kussuyok",
+    "35, 36": "Maguyuk",
+    "37, 38": "Maniitok",
+    "39, 40": "Nauja",
+    "41, 42": "Ningakpok",
+    "43, 44": "Nukilik",
+    "45, 46": "Olikpok",
+    "47, 48": "Piktaungitok",
+    "49, 50": "Pukulria",
+    "51, 52": "Qigiq",
+    "53, 54": "Saghani",
+    "55, 56": "Salaksartok",
+    "57, 58": "Sangilak",
+    "59, 60": "Saomik",
+    "61, 62": "Shila",
+    "63, 64": "Siku",
+    "65, 66": "Sirmiq",
+    "67, 68": "Sitiyok",
+    "69, 70": "Sos",
+    "71, 72": "Suka",
+    "73, 74": "Taliriktug",
+    "75, 76": "Taqukaq",
+    "77, 78": "Tartok",
+    "79, 80": "Tiglikte",
+    "81, 82": "Tikaani",
+    "83, 84": "Tonrar",
+    "85, 86": "Tornuaq",
+    "87, 88": "Tulugaq",
+    "89, 90": "Tulukaruk",
+    "91, 92": "Tungulria",
+    "93, 94": "Tuluwaq",
+    "95, 96": "Tuwawi",
+    "97, 98": "Ulva",
+    "99, 100": "Yakone",
+})
+var hyperboreanElements = {
+    1: "Dar",
+    2: "Dor",
+    3: "Dun",
+    4: "Gal",
+    5: "Gan",
+    6: "Gar",
+    7: "Gol",
+    8: "Gon",
+    9: "Gor",
+    10: "Gul",
+    11: "Kal",
+    12: "Kar",
+    13: "Kil",
+    14: "Kol",
+    15: "Kon",
+    16: "Kor",
+    17: "Kul",
+    18: "Kur",
+    19: "Mal",
+    20: "Mar",
+    21: "Mir",
+    22: "Mor",
+    23: "Mur",
+    24: "Plo",
+    25: "Pol",
+    26: "Val",
+    27: "Van",
+    28: "Var",
+    29: "Vil",
+    30: "Vir",
+    31: "Vol",
+    32: "Von",
+    33: "Vor",
+    34: "Vul",
+    35: "Vun",
+    36: "Vur",
+    37: "Xal",
+    38: "Xan",
+    39: "Xar",
+    40: "Xil",
+    41: "Xin",
+    42: "Xir",
+    43: "Xol",
+    44: "Xon",
+    45: "Xor",
+    46: "Xul",
+    47: "Xun",
+    48: "Xur",
+    49: "Zal",
+    50: "Zan",
+    51: "Zar",
+    52: "Zil",
+    53: "Zin",
+    54: "Zir",
+    55: "Zol",
+    56: "Zon",
+    57: "Zor",
+    58: "Zul",
+    59: "Zun",
+    60: "Zur",
+}
+var hyperboreanFamilyNames = {
+    1: "Druun",
+    2: "Ghuul",
+    3: "Graax",
+    4: "Kloon",
+    5: "Phaaz",
+    6: "Ploon",
+    7: "Qaan",
+    8: "Rhaan",
+    9: "Shoon",
+    10: "Slaan",
+    11: "Thoon",
+    12: "Traal",
+    13: "Vheez",
+    14: "Xhoon",
+    15: "Zhaan",
+    16: "Zhuu"
+}
 // Name functions
 function getAmazonianName(gender) {
     let name = ""
@@ -344,6 +476,34 @@ function getCommonName(gender) {
     }
     return [lowerCaseAllWordsExceptFirstLetters(name), context]
 }
+function getEsquimauxName() {
+    let name = esquimauxNames[rollDice(1,100)]
+    let context = "Esquimaux names are genderless, reflecting their original cult belief as all being equally unworthy in the eyes of Kthulhu."
+    return [name, context]
+}
+function getHyperboreanName(gender) {
+    let name = ""
+    let context = "Hyperborean personal names follow a strict pattern of Element-vowel-Element, with the connecting vowels being restricted to a, i, o, and u. Female names are differentiated solely by adding the prefix Sha- to the start of the name, meaning 'Female'"
+    // First name Element-vowel-Element
+    if (gender == "Female") {
+        name += "Sha"
+    }
+    name += hyperboreanElements[rollDice(1,60)]
+    d4Result = rollDice(1,4)
+    if (d4Result == 1) {
+        name += "a"
+    } else if (d4Result == 2) {
+        name += "i"
+    } else if (d4Result == 3) {
+        name += "o"
+    } else if (d4Result == 4) {
+        name += "u"
+    }
+    name += hyperboreanElements[rollDice(1,60)]
+    // Add family name
+    name += " " + hyperboreanFamilyNames[rollDice(1,16)]
+    return [lowerCaseAllWordsExceptFirstLetters(name), context]
+}
 // Click handling
 // Gender dropdown
 $(document).on("click", "#dropdownMenuButtonGender > ul > li > a", function () {
@@ -369,6 +529,10 @@ $(document).on("click", "#generateNameButton", function () {
             name = getAtlanteanName(gender)
         } else if (race == "Common") {
             name = getCommonName(gender)
+        } else if (race == "Esquimaux") {
+            name = getEsquimauxName()
+        } else if (race == "Hyperborean") {
+            name = getHyperboreanName(gender)
         }
         $("#nameResult").text("Name: " + name[0])
         $("#nameContext").text("Context: " + name[1])
