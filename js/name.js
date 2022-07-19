@@ -3,7 +3,7 @@
 var gender = ""
 var race = ""
 // Lowercase function
-const lowerCaseAllWordsExceptFirstLetters = string =>
+var lowerCaseAllWordsExceptFirstLetters = string =>
     string.replaceAll(/\S*/g, word =>
         `${word.slice(0, 1)}${word.slice(1).toLowerCase()}`
     );
@@ -807,62 +807,490 @@ var kimmerianNames = {
     80: { Male: "Zotikos" },
 }
 var krimmeanNames = {
-    //TODO
-    1: { Male: "Agapios", Female: "Agape" },
-    2: { Male: "Agathon", Female: "Agathe" },
-    3: { Male: "Akakios", Female: "Alexandra" },
-    4: { Male: "Alexandros", Female: "Ambrosia" },
-    5: { Male: "Alexios", Female: "Aphrodisia" },
-    6: { Male: "Alkaios", Female: "Apollonia" },
-    7: { Male: "Ambrosios", Female: "Aristomache" },
-    8: { Male: "Anakletos", Female: "Aspasia" },
-    9: { Male: "Anatolios" },
-    10: { Male: "Androkles" },
-    11: { Male: "Andronikos" },
-    12: { Male: "Aniketos" },
-    13: { Male: "Aphrodisios" },
-    14: { Male: "Apollonios" },
-    15: { Male: "Archelaos" },
-    16: { Male: "Archimedes" },
-    17: { Male: "Argyros" },
-    18: { Male: "Aristarchos" },
-    19: { Male: "Aristeides" },
-    20: { Male: "Aristodemos" },
-    21: { Male: "Aristokles" },
-    22: { Male: "Ariston" },
-    23: { Male: "Aristophanes" },
-    24: { Male: "Arkadios" },
-    25: { Male: "Arsenios" },
-    26: { Male: "Asklepiades" },
-    27: { Male: "Athanasios" },
-    28: { Male: "Bion" },
-    29: { Male: "Demosthenes" },
-    30: { Male: "Epaphroditos" },
-    31: { Male: "Epiktetos" },
-    32: { Male: "Euaristos" },
-    33: { Male: "Euphemios" },
-    34: { Male: "Euripides" },
-    35: { Male: "Eusebios" },
-    36: { Male: "Eustathios" },
+    1: { Male: "Bendidóros", Female: "Dentusucu" },
+    2: { Male: "Brinkazis", Female: "Dizasokos" },
+    3: { Male: "Bryzos", Female: "Eptésuchis" },
+    4: { Male: "Byzés", Female: "Kersésuchis" },
+    5: { Male: "Dentupés", Female: "Mokasokos" },
+    6: { Male: "Diaskenthos", Female: "Rhaskusucu" },
+    7: { Male: "Diazelmis", Female: "Surasokos" },
+    8: { Male: "Diazenis", Female: "Tarusucu" },
+    9: { Male: "Dizapés" },
+    10: { Male: "Dizazelmis" },
+    11: { Male: "Drenis" },
+    12: { Male: "Eptakenthos" },
+    13: { Male: "Eptaporis" },
+    14: { Male: "Eptenés" },
+    15: { Male: "Ezbenis" },
+    16: { Male: "Gaidrés" },
+    17: { Male: "Kersés" },
+    18: { Male: "Ketriporis" },
+    19: { Male: "Mukaboris" },
+    20: { Male: "Mukos" },
+    21: { Male: "Mukakenthos" },
+    22: { Male: "Mukapaibes" },
+    23: { Male: "Mukaporis" },
+    24: { Male: "Mukapuis" },
+    25: { Male: "Mukazenis" },
+    26: { Male: "Pytros" },
+    27: { Male: "Rhaskos" },
+    28: { Male: "Rhaskuporis" },
+    29: { Male: "Rhésos" },
+    30: { Male: "Satrés" },
+    31: { Male: "Skaris" },
+    32: { Male: "Suratralis" },
+    33: { Male: "Tarutinos" },
+    34: { Male: "Zilés" },
+    35: { Male: "Zipaibes" },
+    36: { Male: "Zipyros" },
+}
+var pictishNames = {
+    1: { Male: "Adcobrovatos", Female: "Barita" },
+    2: { Male: "Argentocoxos", Female: "Bodicca" },
+    3: { Male: "Arviragos", Female: "Cartimandua" },
+    4: { Male: "Bodiccios", Female: "Cunoarda" },
+    5: { Male: "Brigomaglos", Female: "Cunovinda" },
+    6: { Male: "Cacumattos", Female: "Huctia" },
+    7: { Male: "Calgacos", Female: "Verctissa" },
+    8: { Male: "Caranacos", Female: "Verica" },
+    9: { Male: "Caratacos" },
+    10: { Male: "Cassivellaunos" },
+    11: { Male: "Catavignos" },
+    12: { Male: "Ceanatis" },
+    13: { Male: "Cingetorix" },
+    14: { Male: "Cintugnatos" },
+    15: { Male: "Cintusmos" },
+    16: { Male: "Cistumucos" },
+    17: { Male: "Cogidubnos" },
+    18: { Male: "Commios" },
+    19: { Male: "Crotos" },
+    20: { Male: "Cunittos" },
+    21: { Male: "Cunobarros" },
+    22: { Male: "Cunobelinos" },
+    23: { Male: "Cunomoros" },
+    24: { Male: "Cunopectos" },
+    25: { Male: "Cunovindos" },
+    26: { Male: "Dubnovellaunos" },
+    27: { Male: "Dumnocoveros" },
+    28: { Male: "Dumnovellaunos" },
+    29: { Male: "Enemnogenos" },
+    30: { Male: "Enestinos" },
+    31: { Male: "Ivomagos" },
+    32: { Male: "Litugenos" },
+    33: { Male: "Lugotorix" },
+    34: { Male: "Mandubracios" },
+    35: { Male: "Maslorios" },
+    36: { Male: "Matugenos" },
+    37: { Male: "Melisos" },
+    38: { Male: "Morirex" },
+    39: { Male: "Motios" },
+    40: { Male: "Nectovelios" },
+    41: { Male: "Prasutagos" },
+    42: { Male: "Rianorix" },
+    43: { Male: "Saccios" },
+    44: { Male: "Segovax" },
+    45: { Male: "Senaculos" },
+    46: { Male: "Sennianos" },
+    47: { Male: "Senorix" },
+    48: { Male: "Setibogios" },
+    49: { Male: "Tamesubugos" },
+    50: { Male: "Tancorix" },
+    51: { Male: "Tasciovanos" },
+    52: { Male: "Taximagulos" },
+    53: { Male: "Tincommios" },
+    54: { Male: "Togodumnos" },
+    55: { Male: "Uepogenos" },
+    56: { Male: "Vellocatos" },
+    57: { Male: "Venutios" },
+    58: { Male: "Vindex" },
+    59: { Male: "Vindomorucios" },
+    60: { Male: "Virssuccios" },
+}
+var pictishModifiers = {
+    "ex": "egis",
+    "is": "is",
+    "ix": "igis",
+    "os": "i"
+}
+var halfbloodPictNames = {
+    1: "Chʼáak",
+    2: "Chʼaal",
+    3: "Cháatl",
+    4: "Ch’eet",
+    5: "Chéx̱ʼi",
+    6: "Dís",
+    7: "G̱agaan",
+    8: "G̱aÿéis",
+    9: "Gijook",
+    10: "G̱ooch",
+    11: "Góon",
+    12: "Kéet",
+    13: "Kóon",
+    14: "Kʼóox",
+    15: "L’ook",
+    16: "Sʼáx",
+    17: "Sʼeek",
+    18: "Shaa",
+    19: "Shisʼg̱i",
+    20: "Sitʼ",
+    21: "Taan",
+    22: "Tax̱ʼ",
+    23: "Tleilu",
+    24: "Tóos",
+    25: "Tsiskʼw",
+    26: "Tuḵká",
+    27: "Wéix̱",
+    28: "X’aan",
+    29: "Xaas",
+    30: "Xáatl",
+    31: "X̱aay",
+    32: "Xʼátgu",
+    33: "Xeitl",
+    34: "X̱ík",
+    35: "Xíxchʼi",
+    36: "Xóots",
+    37: "Ÿaaw",
+    38: "Ÿaaÿ",
+    39: "Yéik",
+    40: "Yéi",
+}
+var vikingNames = {
+    1: { Male: "Adalbrandr", Female: "Álfhildr" },
+    2: { Male: "Adalrádr", Female: "Arnbjörg" },
+    3: { Male: "Adalsteinn", Female: "Arndís" },
+    4: { Male: "Aghi", Female: "Arnfridr" },
+    5: { Male: "Agmundr", Female: "Arngerdr" },
+    6: { Male: "Áleifr", Female: "Arngunnr" },
+    7: { Male: "Alfarr", Female: "Arnlaug" },
+    8: { Male: "Alfgeirr", Female: "Ásbjörg" },
+    9: { Male: "Alfkell", Female: "Ásfrídr" },
+    10: { Male: "Álmgeirr", Female: "Ásgerdr" },
+    11: { Male: "Arnbjörn", Female: "Ásgunnr" },
+    12: { Male: "Arnfastr", Female: "Ásný" },
+    13: { Male: "Arngeirr", Female: "Ástrídr" },
+    14: { Male: "Arngrímr", Female: "Dís" },
+    15: { Male: "Arnhallr", Female: "Eybjörg" },
+    16: { Male: "Arnhvatr", Female: "Eydís" },
+    17: { Male: "Arnkell", Female: "Freydís" },
+    18: { Male: "Arnoddr", Female: "Freygerdr" },
+    19: { Male: "Arnsteinn", Female: "Freygunnr" },
+    20: { Male: "Arnthórr", Female: "Frída" },
+    21: { Male: "Arnulfr", Female: "Geira" },
+    22: { Male: "Arnvidr", Female: "Geirbjörg" },
+    23: { Male: "Ásbjörn", Female: "Geirhildr" },
+    24: { Male: "Ásbrandr", Female: "Geirlaug" },
+    25: { Male: "Ásfastr", Female: "Geirrídr" },
+    26: { Male: "Ásgeirr", Female: "Gíslaug" },
+    27: { Male: "Ásgísl", Female: "Gróa" },
+    28: { Male: "Áskell", Female: "Gunna" },
+    29: { Male: "Ásmarr", Female: "Gunnfrídr" },
+    30: { Male: "Ásrádr", Female: "Gunnheidr" },
+    31: { Male: "Ásulfr", Female: "Gunnhildr" },
+    32: { Male: "Ásvaldr", Female: "Gunnlaug" },
+    33: { Male: "Audbjörn", Female: "Gunnvör" },
+    34: { Male: "Audgeirr", Female: "Gyda" },
+    35: { Male: "Audgísl", Female: "Halla" },
+    36: { Male: "Audgrímr", Female: "Hallbera" },
+    37: { Male: "Audkell", Female: "Hallbjörg" },
+    38: { Male: "Audmundr", Female: "Halldís" },
+    39: { Male: "Audulfr", Female: "Hallfrídr" },
+    40: { Male: "Audsteinn", Female: "Hallgerdr" },
+    41: { Male: "Audvaldr", Female: "Hallthóra" },
+    42: { Male: "Audvidr", Female: "Hallveig" },
+    43: { Male: "Baggi", Female: "Heimlaug" },
+    44: { Male: "Balli", Female: "Helga" },
+    45: { Male: "Bárdr", Female: "Herdís" },
+    46: { Male: "Bergr", Female: "Herfrídr" },
+    47: { Male: "Bergthórr", Female: "Hergerdr" },
+    48: { Male: "Bergulfr", Female: "Hergunnr" },
+    49: { Male: "Bersi", Female: "Herthrúdr" },
+    50: { Male: "Birgir", Female: "Hildibjörg" },
+    51: { Male: "Bjartr", Female: "Hildigerdr" },
+    52: { Male: "Björn", Female: "Hildigunnr" },
+    53: { Male: "Björnkell", Female: "Hildr" },
+    54: { Male: "Björnulfr", Female: "Hlíf" },
+    55: { Male: "Bjórr", Female: "Hlífhildr" },
+    56: { Male: "Bleikr", Female: "Hólmfrídr" },
+    57: { Male: "Brandr", Female: "Hólmgerdr" },
+    58: { Male: "Brandulfr", Female: "Hólmlaug" },
+    59: { Male: "Broddr", Female: "Hrefna" },
+    60: { Male: "Brúnkell", Female: "Inga" },
+    61: { Male: "Búi", Female: "Ingibjörg" },
+    62: { Male: "Dagr", Female: "Ingigerdr" },
+    63: { Male: "Dagvidr", Female: "Ingileif" },
+    64: { Male: "Einarr", Female: "Ingirídr" },
+    65: { Male: "Eiríkr", Female: "Jófrídr" },
+    66: { Male: "Eldgrímr", Female: "Jórunn" },
+    67: { Male: "Erlingr", Female: "Ketillaug" },
+    68: { Male: "Eybjörn", Female: "Ketilrídr" },
+    69: { Male: "Eygeirr", Female: "Mær" },
+    70: { Male: "Eyleifr", Female: "Magnhildr" },
+    71: { Male: "Eymundr", Female: "Mundgerdr" },
+    72: { Male: "Eysteinn", Female: "Oddbjörg" },
+    73: { Male: "Eyvindr", Female: "Oddfridr" },
+    74: { Male: "Fastbjörn", Female: "Oddný" },
+    75: { Male: "Fastgeirr", Female: "Ragnbjörg" },
+    76: { Male: "Fastmundr", Female: "Ragnfrídr" },
+    77: { Male: "Fastulfr", Female: "Ragnhildr" },
+    78: { Male: "Fjölmódr", Female: "Rannveig" },
+    79: { Male: "Fóthradr", Female: "Sigbjörg" },
+    80: { Male: "Frakki", Female: "Signý" },
+    81: { Male: "Freybjörn", Female: "Sigrídr" },
+    82: { Male: "Freygeirr", Female: "Sigrún" },
+    83: { Male: "Freyrikr", Female: "Sigthrúdr" },
+    84: { Male: "Freysteinn", Female: "Snælaug" },
+    85: { Male: "Freyvidr", Female: "Steinbjörg" },
+    86: { Male: "Fridbjörn", Female: "Steinfrídr" },
+    87: { Male: "Fridgeirr", Female: "Thúrídr" },
+    88: { Male: "Fridleifr", Female: "Thyri" },
+    89: { Male: "Fridmundr", Female: "Úlfhildr" },
+    90: { Male: "Fridulfr", Female: "Ulla" },
+    91: { Male: "Fródi", Female: "Ullgerdr" },
+    92: { Male: "Gedda", Female: "Ullgunnr" },
+    93: { Male: "Geirbjörn", Female: "Ullhildr" },
+    94: { Male: "Geirfastr", Female: "Ullunn" },
+    95: { Male: "Geirhvatr", Female: "Ullvé" },
+    96: { Male: "Geirleifr", Female: "Ullvör" },
+    97: { Male: "Geirleikr", Female: "Unna" },
+    98: { Male: "Geirmodr", Female: "Unnr" },
+    99: { Male: "Geirmundr", Female: "Véfrídr" },
+    100: { Male: "Geirr", Female: "Végerdr" },
+    101: { Male: "Geirradr" },
+    102: { Male: "Geirulfr" },
+    103: { Male: "Geirvidr" },
+    104: { Male: "Geitir" },
+    105: { Male: "Gísl" },
+    106: { Male: "Gísmundr" },
+    107: { Male: "Grímkell" },
+    108: { Male: "Grímr" },
+    109: { Male: "Gunnr" },
+    110: { Male: "Gunnbjörn" },
+    111: { Male: "Gunnhvatr" },
+    112: { Male: "Gunnkell" },
+    113: { Male: "Gunnleifr" },
+    114: { Male: "Gunnmundr" },
+    115: { Male: "Gunnúlfr" },
+    116: { Male: "Gunnsteinn" },
+    117: { Male: "Gunnvaldr" },
+    118: { Male: "Gunnvidr" },
+    119: { Male: "Hafr" },
+    120: { Male: "Hafrsteinn" },
+    121: { Male: "Hafthórr" },
+    122: { Male: "Haki" },
+    123: { Male: "Hákon" },
+    124: { Male: "Hallbjörn" },
+    125: { Male: "Hallgeirr" },
+    126: { Male: "Hallgrímr" },
+    127: { Male: "Hallkell" },
+    128: { Male: "Hallmundr" },
+    129: { Male: "Hallr" },
+    130: { Male: "Hallsteinn" },
+    131: { Male: "Hallthórr" },
+    132: { Male: "Hallvardr" },
+    133: { Male: "Hardgeirr" },
+    134: { Male: "Hardgrípr" },
+    135: { Male: "Hardsteinn" },
+    136: { Male: "Haukr" },
+    137: { Male: "Helgi" },
+    138: { Male: "Hemingr" },
+    139: { Male: "Herbjörn" },
+    140: { Male: "Hergeirr" },
+    141: { Male: "Hergrímr" },
+    142: { Male: "Herleifr" },
+    143: { Male: "Hermundr" },
+    144: { Male: "Hersteinn" },
+    145: { Male: "Hildulfr" },
+    146: { Male: "Hjálmarr" },
+    147: { Male: "Hjálmr" },
+    148: { Male: "Hlífsteinn" },
+    149: { Male: "Hólmbjörn" },
+    150: { Male: "Hólmfastr" },
+    151: { Male: "Hólmgeirr" },
+    152: { Male: "Hólmkell" },
+    153: { Male: "Hólmsteinn" },
+    154: { Male: "Hrafn" },
+    155: { Male: "Hróaldr" },
+    156: { Male: "Hródbjörn" },
+    157: { Male: "Hródgeirr" },
+    158: { Male: "Hródgísl" },
+    159: { Male: "Hródmundr" },
+    160: { Male: "Hródsteinn" },
+    161: { Male: "Hródulfr" },
+    162: { Male: "Hródvaldr" },
+    163: { Male: "Hrólfr" },
+    164: { Male: "Hrútr" },
+    165: { Male: "Ígulbjörn" },
+    166: { Male: "Ígulfastr" },
+    167: { Male: "Ígull" },
+    168: { Male: "Ingi" },
+    169: { Male: "Ingibjörn" },
+    170: { Male: "Ingifastr" },
+    171: { Male: "Ingigeirr" },
+    172: { Male: "Ingimárr" },
+    173: { Male: "Ingimundr" },
+    174: { Male: "Ingivaldr" },
+    175: { Male: "Ingiúlfr" },
+    176: { Male: "Ívarr" },
+    177: { Male: "Jóarr" },
+    178: { Male: "Jöfurbjörn" },
+    179: { Male: "Jöfurr" },
+    180: { Male: "Jöfursteinn" },
+    181: { Male: "Jórkell" },
+    182: { Male: "Jórulfr" },
+    183: { Male: "Kári" },
+    184: { Male: "Kárr" },
+    185: { Male: "Ketilbjörn" },
+    186: { Male: "Ketilfastr" },
+    187: { Male: "Ketill" },
+    188: { Male: "Ketilmundr" },
+    189: { Male: "Knútr" },
+    190: { Male: "Kolbjörn" },
+    191: { Male: "Kolbrandr" },
+    192: { Male: "Kolgrímr" },
+    193: { Male: "Kvígbjörn" },
+    194: { Male: "Kvígulfr" },
+    195: { Male: "Leifr" },
+    196: { Male: "Líknbjörn" },
+    197: { Male: "Líknmundr" },
+    198: { Male: "Lodinn" },
+    199: { Male: "Lodmundr" },
+    200: { Male: "Máni" },
+    201: { Male: "Nefbjörn" },
+    202: { Male: "Nefgeirr" },
+    203: { Male: "Oddbjörn" },
+    204: { Male: "Oddgeirr" },
+    205: { Male: "Oddi" },
+    206: { Male: "Oddkell" },
+    207: { Male: "Oddleifr" },
+    208: { Male: "Oddr" },
+    209: { Male: "Oddulfr" },
+    210: { Male: "Óleifr" },
+    211: { Male: "Ormgeirr" },
+    212: { Male: "Ormr" },
+    213: { Male: "Ormulfr" },
+    214: { Male: "Orri" },
+    215: { Male: "Rádúlfr" },
+    216: { Male: "Rádvaldr" },
+    217: { Male: "Ragnarr" },
+    218: { Male: "Ragnbjörn" },
+    219: { Male: "Ragnfastr" },
+    220: { Male: "Ragnvadr" },
+    221: { Male: "Raudbjörn" },
+    222: { Male: "Raudr" },
+    223: { Male: "Raudulfr" },
+    224: { Male: "Refr" },
+    225: { Male: "Reidr" },
+    226: { Male: "Ríkulfr" },
+    227: { Male: "Rúni" },
+    228: { Male: "Sæbjörn" },
+    229: { Male: "Sægeirr" },
+    230: { Male: "Sægrímr" },
+    231: { Male: "Sæleifr" },
+    232: { Male: "Sæmundr" },
+    233: { Male: "Sæthórr" },
+    234: { Male: "Sigbjörn" },
+    235: { Male: "Sigfastr" },
+    236: { Male: "Siggeirr" },
+    237: { Male: "Sigmundr" },
+    238: { Male: "Sigulfr" },
+    239: { Male: "Sigsteinn" },
+    240: { Male: "Sigtryggr" },
+    241: { Male: "Sigurdr" },
+    242: { Male: "Snæbjörn" },
+    243: { Male: "Snæulfr" },
+    244: { Male: "Snorri" },
+    245: { Male: "Sölvi" },
+    246: { Male: "Steinbjörn" },
+    247: { Male: "Steinfastr" },
+    248: { Male: "Steingísl" },
+    249: { Male: "Steingrímr" },
+    250: { Male: "Steinkell" },
+    251: { Male: "Steinn" },
+    252: { Male: "Steinulfr" },
+    253: { Male: "Stigr" },
+    254: { Male: "Styrbjörn" },
+    255: { Male: "Styrfastr" },
+    256: { Male: "Styrr" },
+    257: { Male: "Sunnulfr" },
+    258: { Male: "Sunnvidr" },
+    259: { Male: "Sveinbjörn" },
+    260: { Male: "Sveingeirr" },
+    261: { Male: "Sveinn" },
+    262: { Male: "Thjódgeirr" },
+    263: { Male: "Thjódmarr" },
+    264: { Male: "Thjódulfr" },
+    265: { Male: "Úlfgeirr" },
+    266: { Male: "Úlfkell" },
+    267: { Male: "Úlfr" },
+    268: { Male: "Úlfvaldr" },
+    269: { Male: "Ullákr" },
+    270: { Male: "Ullalfr" },
+    271: { Male: "Ullbjörn" },
+    272: { Male: "Ullbrandr" },
+    273: { Male: "Ulldr" },
+    274: { Male: "Ulleifr" },
+    275: { Male: "Ullfastr" },
+    276: { Male: "Ullfredr" },
+    277: { Male: "Ullgeirr" },
+    278: { Male: "Ullgísl" },
+    279: { Male: "Ullgnýr" },
+    280: { Male: "Ullgrímr" },
+    281: { Male: "Ullhallr" },
+    282: { Male: "Ullir" },
+    283: { Male: "Ullkell" },
+    284: { Male: "Ullmodr" },
+    285: { Male: "Ullmundr" },
+    286: { Male: "Ulloddr" },
+    287: { Male: "Ullormr" },
+    288: { Male: "Ullsteinn" },
+    289: { Male: "Ullulfr" },
+    290: { Male: "Ullvaldr" },
+    291: { Male: "Vedr" },
+    292: { Male: "Vidbjörn" },
+    293: { Male: "Vidfastr" },
+    294: { Male: "Vígbjörn" },
+    295: { Male: "Vígfastr" },
+    296: { Male: "Vígleikr" },
+    297: { Male: "Vígmadr" },
+    298: { Male: "Vígmundr" },
+    299: { Male: "Vígulfr" },
+    300: { Male: "Vilhjálmr" },
+}
+var vikingModifiers = {
+    "björn": "biarnar",
+    "dr": "ar",
+    "i": "a",
+    "ir": "is",
+    "ll": "ls",
+    "nn": "ns",
+    "rr": "rs",
+    "r": "s",
 }
 // Name functions
+function getMatronym(nameModifiers, name) {
+    console.log(name)
+    nameEndings = Object.keys(nameModifiers)
+    for (let i = 0; i < nameEndings.length; i++) {
+        if (name.endsWith(nameEndings[i])) {
+            console.log(nameEndings[i])
+            name = name.replace(new RegExp(nameEndings[i]+'$'), nameModifiers[nameEndings[i]])
+            break
+        }
+    }
+    console.log(name)
+    return name
+}
+function getPatronym(nameModifiers, name) {
+    return getMatronym(nameModifiers, name)
+}
 function getAmazonianName(gender) {
     let name = ""
     let context = "Amazon society uses the name of the mother as a matronymic, modifying it with –doros (“gift of”). The mother’s name is modified in the matronym based on its ending."
-    let nameMother = ""
-    let d100Name = rollDice(1, 100)
-    let d100NameMother = rollDice(1, 100)
 
-    name += amazonianNames[d100Name][gender]
-    nameMother = amazonianNames[d100NameMother]["Female"]
+    name += amazonianNames[rollDice(1, 100)][gender]
     // Determine matronym
-    nameEndings = Object.keys(amazonianModifiers)
-    for (let i = 0; i < nameEndings.length; i++) {
-        if (nameMother.endsWith(nameEndings[i])) {
-            nameMother = nameMother.replace(nameEndings[i], amazonianModifiers[nameEndings[i]])
-        }
-    }
-    name += " " + nameMother
+    matronym = getMatronym(amazonianModifiers, amazonianNames[rollDice(1, 100)]["Female"])
+    name += " " + matronym
     return [name, context]
 }
 function getAtlanteanName(gender) {
@@ -916,7 +1344,7 @@ function getCommonName(gender) {
     return [lowerCaseAllWordsExceptFirstLetters(name), context]
 }
 function getEsquimauxName() {
-    let name = esquimauxNames[rollDice(1,100)]
+    let name = esquimauxNames[rollDice(1, 100)]
     let context = "Esquimaux names are genderless, reflecting their original cult belief as all being equally unworthy in the eyes of Kthulhu."
     return [name, context]
 }
@@ -927,8 +1355,8 @@ function getHyperboreanName(gender) {
     if (gender == "Female") {
         name += "Sha"
     }
-    name += hyperboreanElements[rollDice(1,60)]
-    d4Result = rollDice(1,4)
+    name += hyperboreanElements[rollDice(1, 60)]
+    d4Result = rollDice(1, 4)
     if (d4Result == 1) {
         name += "a"
     } else if (d4Result == 2) {
@@ -938,18 +1366,18 @@ function getHyperboreanName(gender) {
     } else if (d4Result == 4) {
         name += "u"
     }
-    name += hyperboreanElements[rollDice(1,60)]
+    name += hyperboreanElements[rollDice(1, 60)]
     // Add family name
-    name += " " + hyperboreanFamilyNames[rollDice(1,16)]
+    name += " " + hyperboreanFamilyNames[rollDice(1, 16)]
     return [lowerCaseAllWordsExceptFirstLetters(name), context]
 }
 function getIxianName(gender) {
     let name = ""
     let context = "Ixian girls and women follow their personal name with a patronymic based on the name of their father (if unmarried, thugatêr_x) or husband (if married, gunê_x). They do not use their father’s or husband’s patronymic as part of their name. Male Ixians simply use their father’s unmodified name as a patronymic. This name does not change upon marriage"
-    
+
     if (gender == "Female") {
         name += ixianFemaleNames[rollDice(1, 10)] + " "
-        d2Result = rollDice(1,2)
+        d2Result = rollDice(1, 2)
         if (d2Result == 1) {
             name += "gunê"
         } else {
@@ -971,7 +1399,7 @@ function getKelticName(gender) {
         name += " Inghean "
     } else {
         name += kelticMaleNames[rollDice(1, 100)]
-        name += " Macc " 
+        name += " Macc "
     }
     name += kelticMaleNames[rollDice(1, 100)]
     return [name, context]
@@ -980,13 +1408,63 @@ function getKimmerianName(gender) {
     let name = ""
     let context = "The Kimmerians of the steppes came to use the Hellenic tongue as their own over time, and with it the use of Hellenic names in place of those traditional to their people. Believing that people stand on their own merits, they do not use patronymics or matronymics, but do use appropriate epithets as marks of distinction"
     if (gender == "Female") {
-        name = kimmerianNames[rollDice(1,40)][gender]
+        name = kimmerianNames[rollDice(1, 40)][gender]
     } else {
-        name = kimmerianNames[rollDice(1,80)][gender]
+        name = kimmerianNames[rollDice(1, 80)][gender]
     }
     return [name, context]
 }
+function getKrimmeanName(gender) {
+    let name = ""
+    let context = "The subterranean Kimmerians still use their ancestral names, though by the time the Scythian ancestors of the Ixians had driven them into the Caucasus Mountains, Hellenic elements had already entered their tongue. Like the Hellenic-named steppe Kimmerians, they use epithets instead of patronymics"
 
+    if (gender == "Female") {
+        name = krimmeanNames[rollDice(1, 8)]["Female"]
+    } else {
+        name = krimmeanNames[rollDice(1, 36)]["Male"]
+    }
+    return [name, context]
+}
+function getPictishName(gender) {
+    let name = ""
+    let context = "Although Pictish inheritance is traced through the mother’s line, Pictish men traditionally use a patronymic based on their oldest uncle. Female Picts do not use a patronymic"
+
+    if (gender == "Female") {
+        name = pictishNames[rollDice(1, 8)]["Female"]
+    } else {
+        name += pictishNames[rollDice(1, 60)]["Male"]
+        name += " nepos "
+        // Determine patronym
+        patronym = getPatronym(pictishModifiers, pictishNames[rollDice(1, 60)]["Male"])
+        name += patronym
+    }
+    return [name, context]
+}
+function getHalfBloodPictishName() {
+    let name = ""
+    let context = "Half-Blood Picts use only two different surnames, those of their two moieties: G̱ooch (Wolf) and Yéil (Raven). These matrilineal groups require that marriages must be between opposite moieties, though in most villages both moieties are common. Both are equally represented, so a given Half-Blood has a 50/50 chance of belonging to either moiety."
+
+    name += halfbloodPictNames[rollDice(1, 40)]
+    d2Result = rollDice(1, 2)
+
+    if (d2Result == 1) {
+        name += " G̱ooch"
+    } else {
+        name += " Yéil"
+    }
+    return [name, context]
+}
+function getVikingName(gender) {
+    let name = ""
+    let context = "Both male and female vikings use a patronymic based on their father’s name, adding –son (son) or –dóttir (daughter) respectively. The father’s name is modified slightly, however, depending on its ending. Note that all Viking personal names that begin with “Ull” (honoring Ullr) should be replaced with “Thor” when creating an outcast Viking from the Isles of Thur; e.g., Ullunn would become Thorunn, Ullormr would become Thorormr."
+
+    if (gender == "Female") {
+        name = vikingNames[rollDice(1,100)]["Female"] + " " + getPatronym(vikingModifiers, vikingNames[rollDice(1,300)]["Male"]) + "dóttir"
+    } else {
+        name = vikingNames[rollDice(1,300)]["Male"] + " " + getPatronym(vikingModifiers, vikingNames[rollDice(1,300)]["Male"]) + "son"
+    }
+    return [name, context]
+}
 // Click handling
 // Gender dropdown
 $(document).on("click", "#dropdownMenuButtonGender > ul > li > a", function () {
@@ -1022,9 +1500,17 @@ $(document).on("click", "#generateNameButton", function () {
             name = getKelticName(gender)
         } else if (race == "Kimmerian") {
             name = getKimmerianName(gender)
-        } else if (race == "Kimmerian (Kimmeri-Kelt)"){
+        } else if (race == "Kimmerian (Kimmeri-Kelt)") {
             name = getKelticName(gender)
             name[1] = "The majority of Kimmeri-Kelt tribes have long adopted Keltic names, as their traditional tongue fell into disuse everywhere save in the subterranean realm of Krimmea. A few tribes, however, use Hellenic names much as the steppe-dwelling Kimmerian tribes."
+        } else if (race == "Kimmerian (Krimmean)") {
+            name = getKrimmeanName(gender)
+        } else if (race == "Pictish") {
+            name = getPictishName(gender)
+        } else if (race == "Pictish (Half-Blood)") {
+            name = getHalfBloodPictishName()
+        } else if (race == "Viking") {
+            name = getVikingName(gender)
         }
         $("#nameResult").text("Name: " + name[0])
         $("#nameContext").text("Context: " + name[1])
