@@ -1,6 +1,6 @@
 // Load content 
 $(document).ready(function () {
-    loadContent("name")
+    loadContent("home")
 });
 function loadContent(view) {
     var file = 'views/' + view + '.html'
