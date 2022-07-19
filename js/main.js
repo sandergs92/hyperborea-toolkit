@@ -1,6 +1,6 @@
 // Load content 
 $(document).ready(function () {
-    loadContent("weather")
+    loadContent("home")
 });
 function loadContent(view) {
     var file = 'views/' + view + '.html'
@@ -16,4 +16,20 @@ function rollDice(n, sides) {
     for (var i = 0; i < n; i++)
         a[i] = Math.floor(Math.random() * sides) + 1
     return a.reduce((a, b) => a + b, 0)
+}
+// Object expand function
+// example:
+// var amazonian = expand({
+//     "0, 1": { female: "foo", male: "bar"}
+// });
+function expand(obj) {
+    var keys = Object.keys(obj);
+    for (var i = 0; i < keys.length; ++i) {
+        var key = keys[i],
+            subkeys = key.split(/,\s?/),
+            target = obj[key];
+        delete obj[key];
+        subkeys.forEach(function(key) { obj[key] = target; })
+    }
+    return obj;
 }
