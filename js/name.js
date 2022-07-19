@@ -1268,7 +1268,6 @@ var vikingModifiers = {
 }
 // Name functions
 function getMatronym(nameModifiers, name) {
-    console.log(name)
     nameEndings = Object.keys(nameModifiers)
     for (let i = 0; i < nameEndings.length; i++) {
         if (name.endsWith(nameEndings[i])) {
@@ -1277,7 +1276,6 @@ function getMatronym(nameModifiers, name) {
             break
         }
     }
-    console.log(name)
     return name
 }
 function getPatronym(nameModifiers, name) {
