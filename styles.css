@@ -1,0 +1,39 @@
+/* Base styling for the body to center content horizontally and vertically, set the font family, and remove default margins */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    text-align: center;
+}
+
+/* Sets the default font weight for text within the introduction section to normal */
+#introduction {
+    font-weight: normal;
+}
+
+/* Styles for main titles within the introduction section, making them bold and larger than other text */
+#introduction h1 {
+    font-size: 32px; /* Sets the font size for titles to be larger for emphasis */
+    font-weight: bold; /* Ensures titles are bold for clear hierarchy */
+    margin: 20px 0; /* Adds vertical spacing above and below the title */
+}
+
+/* Specific styles for sentences on sentence-specific pages, making them significantly larger for focus */
+#introduction.sentencex h1 {
+    font-size: 48px; /* Larger font size for sentences to highlight them */
+}
+
+/* Default styling for paragraph text within the introduction section, setting a comfortable reading size */
+#introduction p {
+    font-size: 26px; /* Standard font size for paragraph text */
+    margin: 10px 0; /* Adds vertical spacing above and below paragraphs */
+}
+
+/* Styling for specific "Sentence x of x" paragraphs to make them slightly smaller and non-bold for differentiation */
+#introduction p.counter {
+    font-size: 16px; /* Slightly smaller font size for subordinate text */
+    font-weight: normal; /* Non-bold to differentiate from main text and titles */
+}
